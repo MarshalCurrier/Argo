@@ -1,0 +1,22 @@
+deployment:
+  appName: marshalcurrierresume
+  image: marshalcurrier/marshalcurrierresume
+  replicas: 1
+
+namespace: marshalcurrier-ns
+
+issuer: 
+  name: le-marshalcurrier-http
+  email: marshalcurrier@gmail.com
+  privateKeySecretRef:
+    name: marshalcurrier-issuer-account-key
+  server: 
+    prod: https://acme-v02.api.letsencrypt.org/directory
+    staging: https://acme-staging-v02.api.letsencrypt.org/directory
+
+ingress:
+  name: marshalcurrier-ingress
+  host: marshalcurrier.com
+  secret: tls-marshalcurrier-ingress-http
+
+service: nginx-service-marshalcurrier
