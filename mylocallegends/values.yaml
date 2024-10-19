@@ -16,7 +16,7 @@ issuer:
 
 ingress:
   name: mylocallegends-ingress
-  host: argo.mylocallegends.com
+  host: mylocallegends.com
   secret: tls-mylocallegends-ingress-http
 
 service: nginx-service-mylocallegends
