@@ -1,0 +1,22 @@
+deployment:
+  appName: mylocallegends
+  image: marshalcurrier/mylocallegends
+  replicas: 1
+
+namespace: mylocallegends-ns
+
+issuer: 
+  name: le-mylocallegends-http
+  email: marshalcurrier@gmail.com
+  privateKeySecretRef:
+    name: mylocallegends-issuer-account-key
+  server: 
+    prod: https://acme-v02.api.letsencrypt.org/directory
+    staging: https://acme-staging-v02.api.letsencrypt.org/directory
+
+ingress:
+  name: mylocallegends-ingress
+  host: argo.mylocallegends.com
+  secret: tls-mylocallegends-ingress-http
+
+service: nginx-service-mylocallegends

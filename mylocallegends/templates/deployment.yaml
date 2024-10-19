@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.appName }} # Name of the deployment
+  namespace: {{ .Values.namespace }} # Name of the namespace
+  labels:
+    app: {{ .Values.deployment.appName }} # Name of your application
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.appName }} # Name of your application
+  replicas: {{ .Values.deployment.replicas }} # Number of replicas
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.appName }} # Name of your application
+    spec:
+      containers:
+      - name: {{ .Values.deployment.appName }} # Name of the container
+        image: {{ .Values.deployment.image }} # The image that you want to deploy
+        ports:
+        - containerPort: 80 # The port that your application uses
+        resources:
+          limits:
+            cpu: "0.5" # CPU limit for the container
+            memory: "512Mi" # Memory limit for the container
+          requests:
+            cpu: "0.1" # CPU request for the container
+            memory: "256Mi" # Memory request for the container
+
